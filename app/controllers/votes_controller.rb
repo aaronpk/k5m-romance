@@ -2,6 +2,7 @@ class VotesController < ApplicationController
   # GET /votes
   # GET /votes.json
   def index
+    authenticate
     @votes = Vote.all
 
     respond_to do |format|
@@ -13,6 +14,7 @@ class VotesController < ApplicationController
   # GET /votes/1
   # GET /votes/1.json
   def show
+    authenticate
     @vote = Vote.find(params[:id])
 
     respond_to do |format|
@@ -24,6 +26,7 @@ class VotesController < ApplicationController
   # GET /votes/new
   # GET /votes/new.json
   def new
+    authenticate
     @vote = Vote.new
 
     respond_to do |format|
@@ -34,13 +37,16 @@ class VotesController < ApplicationController
 
   # GET /votes/1/edit
   def edit
+    authenticate
     @vote = Vote.find(params[:id])
   end
 
   # POST /votes
   # POST /votes.json
   def create
+    authenticate
     @vote = Vote.new(params[:vote])
+    @vote.shareholder = @current_user
 
     respond_to do |format|
       if @vote.save
@@ -56,6 +62,7 @@ class VotesController < ApplicationController
   # PUT /votes/1
   # PUT /votes/1.json
   def update
+    authenticate
     @vote = Vote.find(params[:id])
 
     respond_to do |format|
@@ -72,6 +79,7 @@ class VotesController < ApplicationController
   # DELETE /votes/1
   # DELETE /votes/1.json
   def destroy
+    authenticate
     @vote = Vote.find(params[:id])
     @vote.destroy
 

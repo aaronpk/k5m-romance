@@ -11,8 +11,8 @@
           <header class="clearfix">
             <h2><a href="<%= url_for candidate %>"><%= candidate[:name] %></a></h2>
             <div class="voting">
-              <div class="vote-btn yes">60%</div>
-              <div class="vote-btn no">40%</div>
+              <div class="vote-btn yes" data-candidate-id="<%= candidate[:id] %>">60%</div>
+              <div class="vote-btn no" data-candidate-id="<%= candidate[:id] %>">40%</div>
             </div>
           </header>
           

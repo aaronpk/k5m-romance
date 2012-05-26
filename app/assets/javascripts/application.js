@@ -13,3 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(function(){
+  $(".vote-btn").click(function(){
+    $.post("/votes.json", {
+      "vote[candidate_id]": $(this).data("candidate-id"),
+      "vote[value]": ($(this).hasClass("yes") ? 1 : 0)
+    }, function(e){
+      console.debug(e);
+    });
+  });
+});
+
