@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
       code = params[:code] || cookies[:token]
       if Shareholder.find_by_code code
         cookies[:token] = code
+        @current_user = Shareholder.find_by_code code
         return true
       else
         flash[:notice] = "Incorrect code"

@@ -9,25 +9,25 @@
       <% @candidates.each do |candidate| %>
         <article>
           <header class="clearfix">
-            <h2><%= candidate[:name] %></h2>
+            <h2><a href="<%= url_for candidate %>"><%= candidate[:name] %></a></h2>
             <div class="voting">
               <div class="vote-btn yes">60%</div>
               <div class="vote-btn no">40%</div>
             </div>
           </header>
           
-          <p><%= candidate[:text] %></p>
+          <!-- Allow HTML in the candidate text since it can only be entered from the admin panel -->
+          <p><%== candidate[:text] %></p>
           
-          <%= form_for(@question, :url => {:action => 'ask'}, :html => {:class => 'question-form'}) do %>
-            <input type="text" name="question" class="question" />
+          <%= form_for(@question, :html => {:class => 'question-form'}) do |f| %>
+            <%= f.text_field :text, :class => 'question' %>
+            <input type="hidden" name="question[candidate_id]" value="<%= candidate[:id] %>" />
             <button class="btn">Ask a question</button>
           <% end %>
 
-          
-          <p class="question">Question: Are u a virgin?</p>
-          <p class="question">Question: Down for a threeway?</p>
-          <p class="question">Question: What is your favorite cocktail?</p>
-          <p class="question">Question: Does this person want children?</p>
+          <% candidate.questions.each do |question| %>
+            <p class="question">Question: <%= question[:text] %></p>
+          <% end %>
           
         </article>
       <% end %>

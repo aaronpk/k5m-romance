@@ -1,0 +1,33 @@
+  <div id="wrapper">
+    <header id="main">
+      <%= image_tag "kmikeym_logo_heart.png" %>
+      <h1>Romance Advisory</h1>
+    </header>
+
+
+        <article>
+          <header class="clearfix">
+            <h2><%= @candidate[:name] %></h2>
+            <div class="voting">
+              <div class="vote-btn yes">60%</div>
+              <div class="vote-btn no">40%</div>
+            </div>
+          </header>
+          
+          <!-- Allow HTML in the candidate text since it can only be entered from the admin panel -->
+          <p><%== @candidate[:text] %></p>
+          
+          <%= form_for(@question, :html => {:class => 'question-form'}) do |f| %>
+            <%= f.text_field :text, :class => 'question' %>
+            <input type="hidden" name="question[candidate_id]" value="<%= @candidate[:id] %>" />
+            <button class="btn">Ask a question</button>
+          <% end %>
+
+          <% @candidate.questions.each do |question| %>
+            <p class="question">Question: <%= question[:text] %></p>
+          <% end %>
+          
+        </article>
+
+
+    </div>
