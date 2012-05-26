@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.3'
 
 gem 'jquery-rails'
-gem 'rails_admin'
+gem 'rails_admin', '0.0.3'
 gem 'haml'
 gem 'nokogiri'
 
