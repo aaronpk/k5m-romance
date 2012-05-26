@@ -1,29 +1,29 @@
 class ShareholdersController < ApplicationController
-  # GET /shareholders
-  # GET /shareholders.json
-  def index
-    @shareholders = Shareholder.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @shareholders }
-    end
-  end
-
-  # GET /shareholders/1
-  # GET /shareholders/1.json
-  def show
-    @shareholder = Shareholder.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @shareholder }
-    end
-  end
-
   # I'm guessing this is boilerplate controller stuff, 
   # we don't want users updating/creating these records
   # -aaronpk
+
+  # GET /shareholders
+  # GET /shareholders.json
+  # def index
+  #   @shareholders = Shareholder.all
+
+  #   respond_to do |format|
+  #     format.html # index.html.erb
+  #     format.json { render json: @shareholders }
+  #   end
+  # end
+
+  # # GET /shareholders/1
+  # # GET /shareholders/1.json
+  # def show
+  #   @shareholder = Shareholder.find(params[:id])
+
+  #   respond_to do |format|
+  #     format.html # show.html.erb
+  #     format.json { render json: @shareholder }
+  #   end
+  # end
 
   # # GET /shareholders/new
   # # GET /shareholders/new.json

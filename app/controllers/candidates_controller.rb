@@ -2,6 +2,8 @@ class CandidatesController < ApplicationController
   # GET /candidates
   # GET /candidates.json
   def index
+    authenticate
+
     @candidates = Candidate.all
 
     respond_to do |format|
@@ -13,6 +15,8 @@ class CandidatesController < ApplicationController
   # GET /candidates/1
   # GET /candidates/1.json
   def show
+    authenticate
+
     @candidate = Candidate.find(params[:id])
     @question = Question.new
 
@@ -22,20 +26,20 @@ class CandidatesController < ApplicationController
     end
   end
 
-  # GET /candidates/new
-  # GET /candidates/new.json
-  def new
-    @candidate = Candidate.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @candidate }
-    end
-  end
-
   # I'm guessing this is boilerplate controller stuff, 
   # we don't want users updating/creating these records
   # -aaronpk
+
+  # GET /candidates/new
+  # GET /candidates/new.json
+  # def new
+  #   @candidate = Candidate.new
+
+  #   respond_to do |format|
+  #     format.html # new.html.erb
+  #     format.json { render json: @candidate }
+  #   end
+  # end
 
   # # GET /candidates/1/edit
   # def edit
