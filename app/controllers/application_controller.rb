@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   
   def index
     authenticate
+    @candidates = Candidate.all
+    @question = Question.new
   end
   
   def login
