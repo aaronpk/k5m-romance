@@ -12,14 +12,14 @@ class Candidate < ActiveRecord::Base
   end
 
   def vote_summary
-    votes_yes = Shareholder.joins(:votes).where(:votes => {:candidate_id => self.id, :value => 1}).collect{|s| s.shares}.sum
-    votes_no = Shareholder.joins(:votes).where(:votes => {:candidate_id => self.id, :value => 0}).collect{|s| s.shares}.sum
+    votes_yes = Shareholder.joins(:votes).where(:votes => {:candidate_id => self.id, :value => 1}).collect{|s| s.shares}.sum || 0
+    votes_no = Shareholder.joins(:votes).where(:votes => {:candidate_id => self.id, :value => 0}).collect{|s| s.shares}.sum || 0
     {
       total: votes_yes + votes_no,
       yes: votes_yes,
       no: votes_no,
-      yes_percent: (votes_yes * 100.0 / (votes_yes + votes_no)).round,
-      no_percent: (votes_no * 100.0 / (votes_yes + votes_no)).round
+      yes_percent: ((votes_yes + votes_no) == 0 ? 0 : (votes_yes * 100.0 / (votes_yes + votes_no)).round),
+      no_percent: ((votes_yes + votes_no) == 0 ? 0 : (votes_no * 100.0 / (votes_yes + votes_no)).round)
     }
   end
 end
