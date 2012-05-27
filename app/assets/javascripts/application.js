@@ -17,10 +17,11 @@
 $(function(){
   $(".vote-btn").click(function(){
     $.post("/votes.json", {
-      "vote[candidate_id]": $(this).data("candidate-id"),
-      "vote[value]": ($(this).hasClass("yes") ? 1 : 0)
+      "vote[candidate_id]": parseInt($(this).data("candidate-id")),
+      "vote_value": ($(this).hasClass("yes") ? "yes" : "no")
     }, function(e){
-      console.debug(e);
+      $("#vote-"+e.candidate_id+"-yes").text(e.vote.yes_percent+"%");
+      $("#vote-"+e.candidate_id+"-no").text(e.vote.no_percent+"%");
     });
   });
 });

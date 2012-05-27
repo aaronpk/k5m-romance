@@ -11,8 +11,12 @@
           <header class="clearfix">
             <h2><a href="<%= url_for candidate %>"><%= candidate[:name] %></a></h2>
             <div class="voting">
-              <div class="vote-btn yes" data-candidate-id="<%= candidate[:id] %>">60%</div>
-              <div class="vote-btn no" data-candidate-id="<%= candidate[:id] %>">40%</div>
+              <div class="vote-btn yes" id="vote-<%= @candidate[:id] %>-yes" data-candidate-id="<%= candidate[:id] %>">
+                <%= candidate.percent_yes %>%
+              </div>
+              <div class="vote-btn no" id="vote-<%= @candidate[:id] %>-yes" data-candidate-id="<%= candidate[:id] %>">
+                <%= candidate.percent_no %>%
+              </div>
             </div>
           </header>
           
