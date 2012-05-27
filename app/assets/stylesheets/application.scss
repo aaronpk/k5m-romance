@@ -121,21 +121,36 @@ article {
         background: transparent url('arrows.png') no-repeat;
         cursor: pointer;
         float: left;
-        font-size: 25px;
-        font-weight: 600;
         height: 33px;
-        padding-left: 50px;
-        text-align: right;
-        width: 50px;
+        width: 44px;
         }
       .vote-btn.yes {
         background-position: left top;
-        color: #2c9e12;
-        margin-right: 20px;
         }
       .vote-btn.no {
         background-position: left bottom;
+        }
+      .vote-btn.inactive {
+        background-position-x: -44px;
+        }
+      .vote-percent {
+        float: left;
+        text-align: right;
+        font-size: 25px;
+        font-weight: 600;
+        }
+      .vote-percent.yes {
+        color: #2c9e12;
+        margin-right: 20px;
+        }
+      .vote-percent.no {
         color: #d3300b;
+        }
+      .vote-percent.yes.inactive {
+        color: #d5ecd0;
+        }
+      .vote-percent.no.inactive {
+        color: #f6d6ce;
         }
       }
     }

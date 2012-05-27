@@ -16,12 +16,19 @@
 
 $(function(){
   $(".vote-btn").click(function(){
+
+    var candidate_id = $(this).data("candidate-id");
+    var vote = $(this).hasClass("yes") ? "yes" : "no";
+
+    $("#votepercent-"+candidate_id+"-"+vote+", #vote-"+candidate_id+"-"+vote).removeClass("inactive");
+    $("#votepercent-"+candidate_id+"-"+(vote == "yes" ? "no" : "yes")+", #vote-"+candidate_id+"-"+(vote == "yes" ? "no" : "yes")).addClass("inactive");
+
     $.post("/votes.json", {
-      "vote[candidate_id]": parseInt($(this).data("candidate-id")),
-      "vote_value": ($(this).hasClass("yes") ? "yes" : "no")
+      "vote[candidate_id]": parseInt(candidate_id),
+      "vote_value": vote
     }, function(e){
-      $("#vote-"+e.candidate_id+"-yes").text(e.vote.yes_percent+"%");
-      $("#vote-"+e.candidate_id+"-no").text(e.vote.no_percent+"%");
+      $("#votepercent-"+e.candidate_id+"-yes").text(e.vote.yes_percent+"%");
+      $("#votepercent-"+e.candidate_id+"-no").text(e.vote.no_percent+"%");
     });
   });
 });

@@ -8,12 +8,10 @@
       <header class="clearfix">
         <h2><%= @candidate[:name] %></h2>
         <div class="voting">
-          <div class="vote-btn yes" id="vote-<%= @candidate[:id] %>-yes" data-candidate-id="<%= @candidate[:id] %>">
-            <%= @candidate.percent_yes %>%
-          </div>
-          <div class="vote-btn no" id="vote-<%= @candidate[:id] %>-no" data-candidate-id="<%= @candidate[:id] %>">
-            <%= @candidate.percent_no %>%
-          </div>
+          <div class="vote-btn yes <%= (@vote == "yes" ? "" : "inactive") %>" id="vote-<%= @candidate[:id] %>-yes" data-candidate-id="<%= @candidate[:id] %>"></div>
+          <div class="vote-percent yes <%= (@vote == "yes" ? "" : "inactive") %>" id="votepercent-<%= @candidate[:id] %>-yes" ><%= @candidate.percent_yes %>%</div>
+          <div class="vote-btn no <%= (@vote == "no" ? "" : "inactive") %>" id="vote-<%= @candidate[:id] %>-no" data-candidate-id="<%= @candidate[:id] %>"></div>
+          <div class="vote-percent no <%= (@vote == "no" ? "" : "inactive") %>" id="votepercent-<%= @candidate[:id] %>-no"><%= @candidate.percent_no %>%</div>
         </div>
       </header>
       

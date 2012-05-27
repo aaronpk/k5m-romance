@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
     authenticate
     @candidates = Candidate.all
     @question = Question.new
+    @votes = {}
+    Vote.where(:shareholder_id => 5).each{|vote|
+      @votes[vote[:id]] = vote[:value] ? "yes" : "no"
+    }
   end
   
   def login

@@ -11,12 +11,12 @@
           <header class="clearfix">
             <h2><a href="<%= url_for candidate %>"><%= candidate[:name] %></a></h2>
             <div class="voting">
-              <div class="vote-btn yes" id="vote-<%= @candidate[:id] %>-yes" data-candidate-id="<%= candidate[:id] %>">
-                <%= candidate.percent_yes %>%
-              </div>
-              <div class="vote-btn no" id="vote-<%= @candidate[:id] %>-yes" data-candidate-id="<%= candidate[:id] %>">
-                <%= candidate.percent_no %>%
-              </div>
+
+              <div class="vote-btn yes <%= (@votes[candidate[:id]] == "yes" ? "" : "inactive") %>" id="vote-<%= candidate[:id] %>-yes" data-candidate-id="<%= candidate[:id] %>"></div>
+              <div class="vote-percent yes <%= (@votes[candidate[:id]] == "yes" ? "" : "inactive") %>" id="votepercent-<%= candidate[:id] %>-yes" ><%= candidate.percent_yes %>%</div>
+              <div class="vote-btn no <%= (@votes[candidate[:id]] == "no" ? "" : "inactive") %>" id="vote-<%= candidate[:id] %>-no" data-candidate-id="<%= candidate[:id] %>"></div>
+              <div class="vote-percent no <%= (@votes[candidate[:id]] == "no" ? "" : "inactive") %>" id="votepercent-<%= candidate[:id] %>-no" ><%= candidate.percent_no %>%</div>
+
             </div>
           </header>
           
@@ -35,29 +35,5 @@
           
         </article>
       <% end %>
-
-      <article>
-        <header class="clearfix">
-          <h2>Jenn Alaska</h2>
-          <div class="voting">
-            <div class="vote-btn yes">60%</div>
-            <div class="vote-btn no">40%</div>
-          </div>
-        </header>
-        
-        <p>After completing his studies (graphic design) in 2005, Hannes von Dohren worked in an advertising agency in Hamburg, Germany. Since 2007 he has been working as a freelance graphic- and type designer in Berlin. Von Dohren previously released several typefaces through Linotype, ITC and T26. He now releases some typefaces through his HVD Fonts foundry. </p>
-        
-        <form class="question-form">
-          <input type="text" name="question" class="question" />
-          <button class="btn">Ask a question</button>
-        </form>
-        
-        <p class="question">Question: Are u a virgin?</p>
-        <p class="question">Question: Down for a threeway?</p>
-        <p class="question">Question: What is your favorite cocktail?</p>
-        <p class="question">Question: Does this person want children?</p>
-        
-      </article>
-
     </div>
   </div>
