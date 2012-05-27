@@ -12,8 +12,8 @@ class Candidate < ActiveRecord::Base
   end
 
   def vote_summary
-    votes_yes = Shareholder.joins(:votes).where(:votes => {:value => 1}).collect{|s| s.shares}.sum
-    votes_no = Shareholder.joins(:votes).where(:votes => {:value => 0}).collect{|s| s.shares}.sum
+    votes_yes = Shareholder.joins(:votes).where(:votes => {:candidate_id => self.id, :value => 1}).collect{|s| s.shares}.sum
+    votes_no = Shareholder.joins(:votes).where(:votes => {:candidate_id => self.id, :value => 0}).collect{|s| s.shares}.sum
     {
       total: votes_yes + votes_no,
       yes: votes_yes,

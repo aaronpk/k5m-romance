@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
     @candidates = Candidate.all
     @question = Question.new
     @votes = {}
-    Vote.where(:shareholder_id => 5).each{|vote|
-      @votes[vote[:id]] = vote[:value] ? "yes" : "no"
+    Vote.where(:shareholder_id => @current_user.id).each{|vote|
+      @votes[vote[:candidate_id]] = (vote[:value] == 1 ? "yes" : "no")
     }
   end
   
