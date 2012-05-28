@@ -1,5 +1,5 @@
 class Shareholder < ActiveRecord::Base
-  attr_accessible :code, :shares
+  attr_accessible :code, :shares, :name
   has_many :votes
   has_many :questions
   

@@ -16,12 +16,14 @@ namespace :scrape do
         got_404 = true
         next
       end
+      name = doc.at_css("#user-banner h2").text
       shares = doc.at_css("#user-holdings").text.match(/(\d+)\sshares/)[1]
       shareholder = Shareholder.find_or_create_by_id user_id
+      shareholder.name = name
       shareholder.shares = shares
       shareholder.code = shareholder.code || Shareholder::make_code
       shareholder.save
-      puts "#{user_id} has #{shares} shares"
+      puts "#{name} (#{user_id}) has #{shares} shares"
     end
   end
 end
