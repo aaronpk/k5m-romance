@@ -6,9 +6,11 @@ class ApplicationController < ActionController::Base
     @candidates = Candidate.all
     @question = Question.new
     @votes = {}
-    Vote.where(:shareholder_id => @current_user.id).each{|vote|
-      @votes[vote[:candidate_id]] = (vote[:value] == 1 ? "yes" : "no")
-    }
+    if @current_user
+      Vote.where(:shareholder_id => @current_user.id).each{|vote|
+        @votes[vote[:candidate_id]] = (vote[:value] == 1 ? "yes" : "no")
+      }
+    end
   end
   
   def login
