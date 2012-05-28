@@ -20,7 +20,12 @@ class CandidatesController < ApplicationController
     @candidate = Candidate.find(params[:id])
     @question = Question.new
 
-    @vote = (Vote.where(:candidate_id => @candidate.id, :shareholder_id => @current_user.id)[0].value == 1 ? "yes" : "no")
+    votes = Vote.where(:candidate_id => @candidate.id, :shareholder_id => @current_user.id)
+    if votes.empty?
+      @vote = nil
+    else
+      @vote = (votes[0].value == 1 ? "yes" : "no")
+    end
 
     respond_to do |format|
       format.html # show.html.erb
