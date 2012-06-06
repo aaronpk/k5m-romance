@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   
   def index
     authenticate
-    @candidates = Candidate.all
+    @candidates = Candidate.find(:all, :order => "updated_at DESC")
     @question = Question.new
     @votes = {}
     if @current_user
