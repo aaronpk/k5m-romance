@@ -59,6 +59,13 @@ class VotesController < ApplicationController
       @vote.shareholder = @current_user
     end
 
+    VoteHistory.create({
+      :value => value,
+      :candidate_text => @vote.candidate.text,
+      :candidate_id => params[:vote][:candidate_id], 
+      :shareholder_id => @current_user.id
+    })
+
     respond_to do |format|
       if @vote.save
         format.html { redirect_to @vote, notice: 'Vote was successfully created.' }
