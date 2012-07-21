@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20120612184736) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 8
+    t.integer  "year",       :limit => 5
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
   end
@@ -42,11 +42,11 @@ ActiveRecord::Schema.define(:version => 20120612184736) do
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
   create_table "shareholders", :force => true do |t|
-    t.string   "name"
     t.integer  "shares"
     t.string   "code"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "name"
   end
 
   create_table "vote_histories", :force => true do |t|
