@@ -23,7 +23,7 @@ namespace :scrape do
       shareholder.shares = shares
       shareholder.code = shareholder.code || Shareholder::make_code
       shareholder.save
-      puts "#{name} (#{user_id}) has #{shares} shares"
+      puts "#{name} (#{user_id}) has #{shares} shares. password: #{shareholder.code}"
     end
   end
 end
